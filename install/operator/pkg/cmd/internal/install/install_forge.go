@@ -178,9 +178,6 @@ func (o *Install) installForge() error {
 		return err
 	}
 
-	// Include broker-amq
-	configuration.Productized = true
-
 	synConf := &configuration.Syndesis
 	components := &synConf.Components
 

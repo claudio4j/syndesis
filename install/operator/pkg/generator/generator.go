@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-//
-//go:generate go run assets/assets_generate.go
+//go:generate go run assets/assets_generator.go
 package generator
 
 import (
@@ -29,6 +28,7 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/syndesisio/syndesis/install/operator/pkg"
 	"github.com/syndesisio/syndesis/install/operator/pkg/syndesis/configuration"
 
 	"github.com/pkg/errors"
@@ -85,6 +85,9 @@ var templateFunctions = template.FuncMap{
 			return "latest"
 		}
 		return splits[len(splits)-1]
+	},
+	"brandingUiServer": func() string {
+		return pkg.BrandingSection
 	},
 }
 

@@ -84,7 +84,6 @@ func Test_setConfigFromEnv(t *testing.T) {
 		{
 			name: "When all environment variables are set for images, a valid configuration with all values should be created",
 			want: &Config{
-				Productized: true,
 				ProductName: "something",
 				DevSupport:  true,
 				Syndesis: SyndesisConfig{
@@ -124,7 +123,6 @@ func Test_setConfigFromEnv(t *testing.T) {
 				},
 			},
 			conf: &Config{
-				Productized: true,
 				ProductName: "something",
 				DevSupport:  true,
 				Syndesis: SyndesisConfig{
@@ -345,7 +343,6 @@ func getConfigLiteral() *Config {
 		Version:                    "7.7.0",
 		ProductName:                "syndesis",
 		AllowLocalHost:             false,
-		Productized:                false,
 		DevSupport:                 false,
 		Scheduled:                  true,
 		PrometheusRules:            "",

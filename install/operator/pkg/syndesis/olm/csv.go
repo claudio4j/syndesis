@@ -21,6 +21,7 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/syndesisio/syndesis/install/operator/pkg"
 	"github.com/syndesisio/syndesis/install/operator/pkg/syndesis/configuration"
 
 	"github.com/syndesisio/syndesis/install/operator/pkg/generator"
@@ -37,7 +38,6 @@ type csv struct {
 	version  string
 	maturity string
 
-	// Dependant on whether it is community or productized
 	name           string
 	displayName    string
 	support        string
@@ -168,36 +168,21 @@ func (c *csv) setVariables() {
 	c.version = c.config.Version
 	c.maturity = "alpha"
 
-	// Dependant on whether it is community or productized
-	c.name = "fuse-online-operator"
-	c.displayName = "Red Hat Integration - Fuse Online"
-	c.support = "Fuse Online"
-	c.description = "Manages the installation of Fuse Online, a flexible and customizable open source platform that provides core integration capabilities as a service."
-	c.maintainerName = "Jon Anstey"
-	c.maintainerMail = "janstey@redhat.com"
-	c.provider = "Red Hat"
-
-	if !c.config.Productized {
-		c.name = "syndesis-operator"
-		c.displayName = "Syndesis"
-		c.support = "Syndesis"
-		c.description = "Manages the installation of Syndesis, a flexible and customizable open source platform that provides core integration capabilities as a service."
-		c.maintainerName = "Syndesis team"
-		c.maintainerMail = "syndesis@googlegroups.com"
-		c.provider = "Syndesis team"
-	}
+	c.name = pkg.Name
+	c.displayName = pkg.DisplayName
+	c.support = pkg.Support
+	c.description = pkg.Description
+	c.maintainerName = pkg.MaintainerName
+	c.maintainerMail = pkg.MaintainerMail
+	c.provider = pkg.Provider
 }
 
 // Build the content of the csv file
 func (c *csv) build() (err error) {
-	target := "productized"
-	if !c.config.Productized {
-		target = "community"
-	}
 	c.setVariables()
 
 	alm, err := ioutil.ReadFile(filepath.Join("pkg", "syndesis", "olm", "assets", "alm-examples"))
-	descriptionLong, _ := ioutil.ReadFile(filepath.Join("pkg", "syndesis", "olm", "assets", target, "description"))
+	descriptionLong, _ := ioutil.ReadFile(pkg.OlmDescriptionPath)
 	icon, _ := ioutil.ReadFile(filepath.Join("pkg", "syndesis", "olm", "assets", "icon"))
 	rules, err := c.loadRoleFromTemplate()
 	if err != nil {

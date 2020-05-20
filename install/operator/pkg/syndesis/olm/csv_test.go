@@ -48,7 +48,7 @@ func Test_csv_setCommunityVariables(t *testing.T) {
 		{
 			name: "For upstream",
 			fields: fields{
-				config:   &configuration.Config{Productized: false, Version: "7.7.0"},
+				config:   &configuration.Config{Version: "7.7.0"},
 				operator: "",
 				want: &csv{
 					version:        "7.7.0",
@@ -60,24 +60,6 @@ func Test_csv_setCommunityVariables(t *testing.T) {
 					maintainerName: "Syndesis team",
 					maintainerMail: "syndesis@googlegroups.com",
 					provider:       "Syndesis team",
-				},
-			},
-		},
-		{
-			name: "For Downstream",
-			fields: fields{
-				config:   &configuration.Config{Productized: true, Version: "7.7.0"},
-				operator: "",
-				want: &csv{
-					version:        "7.7.0",
-					maturity:       "alpha",
-					name:           "fuse-online-operator",
-					displayName:    "Red Hat Integration - Fuse Online",
-					support:        "Fuse Online",
-					description:    "Manages the installation of Fuse Online, a flexible and customizable open source platform that provides core integration capabilities as a service.",
-					maintainerName: "Jon Anstey",
-					maintainerMail: "janstey@redhat.com",
-					provider:       "Red Hat",
 				},
 			},
 		},
