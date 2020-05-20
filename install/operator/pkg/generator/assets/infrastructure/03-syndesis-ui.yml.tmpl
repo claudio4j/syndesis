@@ -159,19 +159,5 @@
           {{- end}}
           "logging": false
         },
-{{- if .Productized}}
-        "branding": {
-          "appName": "Fuse Online",
-          "favicon32": "/favicon-32x32.png",
-          "favicon16": "/favicon-16x16.png",
-          "touchIcon": "/apple-touch-icon.png",
-          "productBuild": true
-       }{{- end}}{{- if not .Productized}}
-        "branding": {
-          "appName": "Syndesis",
-          "favicon32": "/favicon-32x32.png",
-          "favicon16": "/favicon-16x16.png",
-          "touchIcon": "/apple-touch-icon.png",
-          "productBuild": false
-       }{{- end}}
+        "branding": {{ brandingUiServer }}
       }

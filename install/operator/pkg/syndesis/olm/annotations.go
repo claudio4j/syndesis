@@ -17,6 +17,7 @@
 package olm
 
 import (
+	"github.com/syndesisio/syndesis/install/operator/pkg"
 	"github.com/syndesisio/syndesis/install/operator/pkg/syndesis/configuration"
 	"gopkg.in/yaml.v2"
 )
@@ -27,17 +28,12 @@ type annotation struct {
 }
 
 func (c *annotation) build() (err error) {
-	name := "fuse-online-operator"
-	if !c.config.Productized {
-		name = "syndesis-operator"
-	}
-
 	m := map[string]map[string]string{
 		"annotations": {
 			"operators.operatorframework.io.bundle.mediatype.v1":       "registry+v1",
 			"operators.operatorframework.io.bundle.manifests.v1":       "manifests/",
 			"operators.operatorframework.io.bundle.metadata.v1":        "metadata/",
-			"operators.operatorframework.io.bundle.package.v1":         name,
+			"operators.operatorframework.io.bundle.package.v1":         pkg.Name,
 			"operators.operatorframework.io.bundle.channels.v1":        "alpha",
 			"operators.operatorframework.io.bundle.channel.default.v1": "alpha",
 		},

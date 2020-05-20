@@ -2,8 +2,13 @@
 build/_output
 deploy/operatorsource.yaml
 dist
+# build.sh and .lib.sh MUST be in git
+# the reason the build.sh and .* are ignore is because there are
+# many of these files in vendor directory that should be ignored
 .*
 build.sh
 before_launch.sh
 /operator-builder.tmp
+# go generated files
 pkg/cmd/internal/install/install_defaults.go
+pkg/app_properties.go

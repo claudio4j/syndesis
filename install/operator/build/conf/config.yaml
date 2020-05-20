@@ -1,6 +1,5 @@
 Version: "2.0"
 AllowLocalHost: false
-Productized: false
 DevSupport: false
 Scheduled: true
 ProductName: syndesis
