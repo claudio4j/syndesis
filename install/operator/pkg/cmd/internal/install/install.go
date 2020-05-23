@@ -56,7 +56,7 @@ type Install struct {
 }
 
 func New(parent *internal.Options) *cobra.Command {
-
+    fmt.Println("Teste")
 	o := Install{Options: parent}
 
 	cmd := cobra.Command{

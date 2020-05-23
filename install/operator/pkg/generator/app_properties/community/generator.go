@@ -69,7 +69,7 @@ const Description = "Manages the installation of Syndesis, a flexible and custom
 const MaintainerName = "Syndesis team"
 const MaintainerMail = "syndesis@googlegroups.com"
 const Provider = "Syndesis team"
-const OlmDescriptionPath = "pkg/cmd/internal/install/generator/community/olm_description.txt"
+const OlmDescriptionPath = "pkg/generator/app_properties/community/olm_description.txt"
 const Version = "%s"
 const BrandingSection = %s
 `, c.Version, brand)
